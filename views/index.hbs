@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/normalize/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <link rel="stylesheet" href="css/codemirror/theme/xq-dark.css">
+  </head>
+  <body>
+    <div class="page">
+      <div class="demo">
+        <div class="d-operator">
+          <label for="theme">theme</label>
+          <select>
+            <option>dark</option>
+            <option>light<option>
+          </select>
+        </div>
+
+        <div class="d-content">
+          <div class="tabs">
+            <div class="tab">
+              <div class="tab-title">HTML</div>
+              <div class="tab-content">
+              <textarea class="js-code-mirror">
+<dl>
+  <dt>title of the graph</dt>
+  <dd class="percentage">
+    <span class="text">
+      Data 1: 20%
+    </span>
+  </dd>
+  <dd class="percentage">
+    <span class="text">
+      Data 2: 50%
+    </span>
+  </dd>
+  <dd class="percentage">
+    <span class="text">
+      Data 3: 30%
+    </span>
+  </dd>
+</dl>
+            </textarea></div>
+            </div>
+            <div class="tab">
+              <div class="tab-title">JavaScript</div>
+              <div class="tab-content"></div>
+            </div>
+            <div class="tab">
+              <div class="tab-title">CSS</div>
+              <div class="tab-content"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="d-result">
+        </div>
+      </div>
+    </div>
+    
+    <script src="js/codemirror/lib/codemirror.js"></script>
+    <script src="js/codemirror/mode/xml/xml.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

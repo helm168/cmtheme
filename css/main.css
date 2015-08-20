@@ -1,0 +1,60 @@
+html {
+  font-size: 18px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.page {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.demo {
+  max-width: 650px;
+  margin: 100px auto;
+}
+
+.d-operator {
+  margin: 0 0 1rem 0;
+}
+
+.d-content {
+  margin: 0 0 1rem 0;
+}
+
+.tabs {
+  position: relative;
+}
+
+.tabs::before {
+  display: table;
+  content: " ";
+  width: 100%;
+  height: 37px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #3d3d3d;
+}
+
+.tab {
+  position: relative;
+}
+
+.tab-title {
+  padding: 10px 9px;
+  float: left;
+  color: #c0c0c0;
+}
+
+.tab-title.active {
+  color: #fff;
+  background-color: #e18628;
+}
+
+.tab-content.active {
+  z-index: 2;
+}
+.d=result {
+  margin: 0 0 1rem 0;
+}

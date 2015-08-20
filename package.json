@@ -1,0 +1,16 @@
+{
+  "name": "cmtheme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "codemirror": "^5.5.0",
+    "express": "^4.13.3",
+    "hbs": "^3.1.0"
+  }
+}
