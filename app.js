@@ -18,11 +18,26 @@ var cssTplPath = path.join(__dirname, 'tpl', 'css.tpl');
 var htmlTplContent = fs.readFileSync(htmlTplPath);
 var jsTplContent = fs.readFileSync(jsTplPath);
 var cssTplContent = fs.readFileSync(cssTplPath);
+
+var themePath = path.join(__dirname, 'node_modules', 'codemirror', 'theme');
+var themes = fs.readdirSync(themePath);
+var themeReg = /(.+)\.css/; 
+themes = themes.map(function(theme) {
+  var result = theme.match(themeReg);
+  if(result.length === 2) {
+    return result[1];
+  } else {
+    return '';
+  }
+});
+
+console.log('themes', themes);
 app.get('/', function(req, res) {
   res.render('index', {
     htmlTpl: htmlTplContent,
     jsTpl: jsTplContent,
-    cssTpl: cssTplContent
+    cssTpl: cssTplContent,
+    themeOptions: themes
   });
 });
 
