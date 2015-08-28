@@ -31,7 +31,6 @@ themes = themes.map(function(theme) {
   }
 });
 
-console.log('themes', themes);
 app.get('/', function(req, res) {
   res.render('index', {
     htmlTpl: htmlTplContent,
