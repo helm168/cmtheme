@@ -21,6 +21,29 @@
 })();
 
 (function(){
+  var a_splice = Array.prototype.splice;
+  var a_join = Array.prototype.join;
+  var a_indexOf = Array.prototype.indexOf;
+
+  //for ie7~?
+  if(!document.head) {
+    document.head = document.getElementsByTagName('head')[0];
+  }
+
+  //ie7-? doesn't support Array.prototype.indexOf
+  if(!Array.prototype.indexOf) {
+    Array.prototype.indexOf = a_indexOf = function(target) {
+      var idx, ln;
+      ln = this.length;
+      for(idx = 0; idx < ln; idx++) {
+        if(this[idx] === target) {
+          return idx;
+        }
+      }
+      return -1;
+    }
+  }
+
   //ie6/ie7/ie8 doesn't have getElementsByClassName method
   if(!document.getElementsByClassName) {
     document.getElementsByClassName = function(className) {
@@ -28,14 +51,44 @@
       var res = [];
       var idx, ln, ele;
       ln = all.length;
+      var classList;
       for(idx = 0; idx < ln; idx++) {
         ele = all[idx];
-        if(Array.prototype.indexOf.call(ele.classList, className) !== -1) {
+        classList = getClassList(ele);
+        if(a_indexOf.call(classList, className) !== -1) {
           res.push(ele); 
         }
       }
       return res;
     }
+  }
+  
+  function getClassList(ele) {
+    var classList, className;
+    classList = ele.classList;
+    if(!classList) {
+      className = ele.className || '';
+      classList = className.split(/\s+/);
+      classList.add = function(target) {
+        if(a_indexOf(this, target) === -1)
+          this.push(target);
+      }
+      classList.remove = function(target) {
+        var idx;
+        if((idx = a_indexOf(this, target)) !== -1) {
+          this.splice(idx, 1);
+        }
+      }
+    }
+    return classList;
+  }
+
+  function addClass(ele, className) {
+    getClassList(ele).add(className);
+  }
+
+  function removeClass(ele, className) {
+    getClassList(ele).remove(className);
   }
 
   var eles = document.getElementsByClassName('js-code-mirror');
@@ -94,12 +147,12 @@
     if(activeIdx !== idx) {
       //-1 indicate not init
       if(activeIdx != -1) {
-        tabTitles[activeIdx].classList.remove('active');
-        tabContents[activeIdx].classList.remove('active');
+        removeClass(tabTitles[activeIdx], 'active');
+        removeClass(tabContents[activeIdx], 'active');
       }
 
-      tabTitles[idx].classList.add('active');
-      tabContents[idx].classList.add('active');
+      addClass(tabTitles[idx], 'active'); 
+      addClass(tabContents[idx], 'active'); 
 
       activeIdx = idx;
       activeEditor = cmEditors[idx];
